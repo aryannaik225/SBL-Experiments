@@ -3,25 +3,40 @@ Steps
 1.Create GitHub Account
  Go to (__https://github.com__)
  → Sign Up.
+
 2.Create New Repository
  Click New Repository → name it DemoRepo → tick “Add README”.
+
 3. Link Local To Remote
 CODE---------------------------------------------------------
+mkdir new
+cd new
+echo "this is exp2" >> README.md
+git init
+git add README.md
+git commit -m "readme"
 git remote add origin https://github.com/<your-username>/DemoRepo.git
 git branch -M main
 git push -u origin main
+git fetch
 
-4.Fork a Repository
+4. tagging
+git log --oneline
+git tag -a v1 d8e4bca -m "tagged d8e4bca"
+git tag t1
+git tag
+git log --oneline
+
+git reset --hard d8e4bca
+git revert d8e4bca
+git push -u origin main
+
+5.Fork a Repository
   Go to any public repo (e.g., https://github.com/octocat/Hello-World)
   Click Fork (top-right corner).
   Clone it to your PC:
 CODE---------------------------------------------------------
 git clone https://github.com/<your-username>/Hello-World.git
-
-5.Create and Push a Tag
-CODE---------------------------------------------------------
-git tag -a v1.0 -m "version 1.0"
-git push origin v1.0
 
 
 Deliverable
