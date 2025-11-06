@@ -1,0 +1,108 @@
+### 🧩 Step 1: Check System Requirements
+
+Before downloading Docker Desktop:
+
+* You must be on **Windows 10 64-bit (Build 19045 or later)** or **Windows 11**.
+* You must have **WSL 2 (Windows Subsystem for Linux)** enabled.
+* Virtualization must be turned **ON** in your BIOS.
+
+To check if WSL and Virtualization are ready:
+on CMD
+wsl --version
+
+If you get an error
+
+wsl --install
+
+Then restart your system once.
+
+ Step 2: Download Docker Desktop
+
+1. Visit: 🔗 [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/)
+2. Click **“Download for Windows (WSL2)”**.
+Note:
+✅ If your processor is AMD Ryzen or Intel (most Windows PCs/laptops):
+👉 Choose x86_64 (also sometimes labeled as AMD64).
+✅ If your processor is ARM-based (like Snapdragon-powered Windows laptops, e.g., Surface Pro X):
+👉 Choose ARM64.
+To confirm your architecture on Windows:
+Press Windows + I → System → About
+Look for System type →
+“64-bit operating system, x64-based processor” → download AMD64 (x86_64)
+“64-bit operating system, ARM-based processor” → download ARM64
+3. This will download a file like:
+
+   ```
+   Docker Desktop Installer.exe
+   ```
+
+   (It’ll usually be in your **Downloads** folder.)
+
+
+### ⚙️ Step 3: Install Docker Desktop
+
+1. **Double-click** on `Docker Desktop Installer.exe`.
+2. When prompted, keep the **“Use WSL 2 instead of Hyper-V”** option checked.
+3. Follow the installation wizard → click **Next** → **Install**.
+4. Once done, click **Close and Restart** if required.
+5. After reboot, **Docker Desktop** should launch automatically.
+
+---
+
+### 👩‍💻 Step 4: Verify Installation
+
+On cmd
+
+docker --version
+
+If Docker is installed properly, you’ll see something like:
+
+```
+Docker version 27.0.3, build a9e1e2d
+```
+
+You can also test Docker’s hello-world image:
+
+
+docker run hello-world
+
+If it prints a success message, Docker is working perfectly ✅
+
+---
+
+### 🧑‍💻 Step 5: Create a Docker Hub Account
+
+1. Go to [https://hub.docker.com/signup](https://hub.docker.com/signup)
+2. Create a **Docker ID**, **email**, and **password**.
+3. Verify your email (you’ll receive a confirmation mail).
+
+Now you can log in from the terminal:
+
+
+docker login
+
+Enter your Docker Hub username and password.
+
+---
+
+### 🧾 Step 6: Run Basic Docker Commands
+
+| Command                                       | Purpose                               |
+| --------------------------------------------- | ------------------------------------- |
+| `docker --version`                            | Check Docker version                  |
+| `docker images`                               | List all downloaded images            |
+| `docker pull ubuntu`                          | Pull the Ubuntu image from Docker Hub |
+| `docker run -it ubuntu`                       | Run an Ubuntu container interactively |
+| `docker ps`                                   | Show running containers               |
+| `docker stop <container_id>`                  | Stop a running container              |
+| `docker build -t myapp .`                     | Build an image from a Dockerfile      |
+| `docker push <your_dockerhub_username>/myapp` | Push image to Docker Hub              |
+
+Example:
+
+```bash
+docker pull nginx
+docker run -d -p 8080:80 nginx
+```
+Then open your browser → `http://localhost:8080` to see Nginx running.
+
