@@ -1,0 +1,50 @@
+Steps
+1. Create Folder: mkdir my-webapp-test and cd my-webapp-test.
+2. Open VS Code: code .
+3. Open Terminal: In VS Code, Terminal > New Terminal.
+4. Create Venv: python -m venv venv
+5. Activate Venv: .\venv\Scripts\activate
+6. Install Libraries: pip install selenium webdriver-manager
+7. Create File: Create Sample1.py in VS Code.
+
+``` Code ----------
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+import time
+
+print("sample test case started")
+service = Service(ChromeDriverManager().install())
+driver = webdriver.Chrome(service=service)
+
+driver.maximize_window()
+driver.get("https://www.google.com/")
+
+search_box = driver.find_element(By.NAME, "q")
+search_box.send_keys("javatpoint")
+time.sleep(1)
+
+search_button = driver.find_element(By.NAME, "btnK")
+search_button.send_keys(Keys.ENTER)
+
+time.sleep(3)
+driver.close()
+
+print("sample test case successfully completed")
+---------- ```
+8. run python Sample1.py
+9. save this into a new public repo
+
+10. open jenkins > new item > freestyle 
+11. SCM: Go to Source Code Management tab -> select Git
+12. repo : paste your public URL here
+13. in Add build step > Execute Windows batch command > paste this in Command box :
+''' This command installs all the Python packages your script needs
+pip install selenium webdriver-manager
+This command runs your test script
+python Sample1.py '''
+
+14. save, click Build Now 
+15. Console output
