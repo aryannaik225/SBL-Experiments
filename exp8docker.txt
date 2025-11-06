@@ -1,0 +1,145 @@
+ 🧪 **Experiment 8: Build a Sample Web App Image using Dockerfile
+
+### 🪶 **Step-by-Step Procedure**
+
+
+#### **Step 1: Create project folder**
+
+Open **VS Code** and create a new folder:
+
+```
+PHP_Hello_Docker
+```
+
+Open the folder in VS Code.
+
+---
+
+#### **Step 2: Create a simple PHP web file**
+
+Create a file named **hello.php** inside that folder and paste this:
+
+```php
+<html>
+  <?php
+    echo "Hello world from PHP container!";
+  ?>
+</html>
+```
+
+*(Alternatively, you can use hello.html with a static message.)*
+
+
+#### **Step 3: Create Dockerfile**
+
+Create a new file named **Dockerfile** (no extension) in the same folder and paste this code:
+
+```dockerfile
+# Use official PHP base image
+FROM php
+
+# Copy all files from current directory to image
+COPY ./ ./
+
+# Expose port 3000
+EXPOSE 3000
+
+# Run PHP’s built-in web server
+CMD ["php", "-S", "0.0.0.0:3000"]
+```
+
+💡 This Dockerfile says:
+
+* Start with a PHP image
+* Copy your app files
+* Open port 3000
+* Run PHP server at 0.0.0.0:3000
+
+---
+
+#### **Step 4: Build Docker image**
+
+Open **Terminal** in VS Code (inside this folder) and run:
+
+```bash
+docker build -t <your_dockerhub_username>/php_hello_app .
+```
+
+Example:
+
+```bash
+docker build -t apeksharanjan/php_hello_app .
+```
+
+This command:
+
+* Builds an image from your Dockerfile
+* Tags it as `apeksharanjan/php_hello_app`
+
+---
+
+#### **Step 5: Run the container**
+
+Now, run your container using:
+
+```bash
+docker run --name php_app -p 3000:3000 apeksharanjan/php_hello_app
+```
+
+Explanation:
+
+* `--name php_app` → gives container a name
+* `-p 3000:3000` → maps container’s port 3000 to your local port 3000
+* The last part is your image name
+
+---
+
+#### **Step 6: Test it in browser**
+
+Open your browser and go to:
+
+```
+http://localhost:3000
+```
+
+✅ You should see:
+
+```
+Hello world from PHP container!
+```
+
+---
+
+#### **Step 7 (Optional): Push image to Docker Hub**
+
+If you want to upload your image:
+
+1. Login to Docker Hub:
+
+   ```bash
+   docker login
+   ```
+
+   (Enter your Docker Hub credentials)
+
+2. Push image:
+
+   ```bash
+   docker push apeksharanjan/php_hello_app
+   ```
+
+Now your image is on Docker Hub and can be accessed from anywhere.
+
+---
+
+### 🧩 **Quick Recap**
+
+| Step | Command / File                                                    | Purpose                     |
+| ---- | ----------------------------------------------------------------- | --------------------------- |
+| 1    | `mkdir PHP_Hello_Docker`                                          | Create project folder       |
+| 2    | `hello.php`                                                       | Web app file                |
+| 3    | `Dockerfile`                                                      | Instructions to build image |
+| 4    | `docker build -t <username>/php_hello_app .`                      | Build image                 |
+| 5    | `docker run --name php_app -p 3000:3000 <username>/php_hello_app` | Run container               |
+| 6    | Visit `localhost:3000`                                            | See output                  |
+| 7    | `docker push <username>/php_hello_app`                            | Push to Docker Hub          |
