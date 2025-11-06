@@ -5,11 +5,11 @@
       c. build.bat
 3. go to jenkins
 4. create a new item (with pipeline)
-5. configure -> pipeline -> scm -> git -> add repo link (from github code HTTPS clone)
+5. configure -> pipeline -> scm -> git -> add repo link (from github code HTTPS clone) -> */main
 6. build now 
 7. click on builds 
 8. show console output
-9. show pipeline 
+9. show pipeline overview
 
 ---
 ---
@@ -63,3 +63,7 @@ javac src\HelloWorld.java
 echo Running program..
 java -cp src HelloWorld
 pause
+
+
+
+https://github.com/amritayadav05/SBL
