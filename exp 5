@@ -1,0 +1,65 @@
+1. create a github repo 
+2. create 3 file :
+      a. HelloWorld.java
+      b. Jenkinsfile
+      c. build.bat
+3. go to jenkins
+4. create a new item (with pipeline)
+5. configure -> pipeline -> scm -> git -> add repo link (from github code HTTPS clone)
+6. build now 
+7. click on builds 
+8. show console output
+9. show pipeline 
+
+---
+---
+HelloWorld.java
+---
+public class HelloWorld{
+  public static void main(String[] args){
+    System.out.println("Hello, JenkinsTest CI/CD Build");
+  }
+}
+---
+
+
+---
+---
+Jenkinsfile
+---
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Compiling Java project......'
+                bat 'javac HelloWorld.java'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Running the application......'
+                bat 'java HelloWorld'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying application......'
+                echo 'Application deployed successfully!'
+            }
+        }
+    }
+}
+---
+
+
+---
+---
+build.bat
+---
+@echo off
+echo Compiling Java files....
+javac src\HelloWorld.java
+echo Running program..
+java -cp src HelloWorld
+pause
